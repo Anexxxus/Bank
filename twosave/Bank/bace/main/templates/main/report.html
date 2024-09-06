@@ -1,0 +1,39 @@
+{% extends 'main/lays.html' %}
+
+{% block content %}
+<ul>
+    <a href="{% url 'delete' %}"><i class="fa fa-trash"></i></a>  <!-- Удаление всех записей -->
+    <a href="{% url 'ex' %}"><i class="fas fa-file-excel"></i></a>  <!-- Экспорт данных в Excel -->
+<ul>
+
+<div class="container_report">
+    <br><br><br>
+
+    <!-- Таблица с данными о валютах -->
+    <table class="table table-bordered" id="example" style="text-align: center;">
+        <thead class="table success">
+        <tr>
+            <th>Name_Currency</th>  <!-- Название валюты -->
+            <th>Curs_BANK</th>  <!-- Курс по банку -->
+            <th>Kurs_sell</th>  <!-- Курс продажи -->
+            <th>Kurs_buy</th>  <!-- Курс покупки -->
+            <th>number_of_currency</th>  <!-- Количество валюты -->
+            <th>data</th>  <!-- Дата записи -->
+        </tr>
+        </thead>
+        
+        {% for i in Food %}
+        <tr>
+            <td>{{ i.Name_Currency }}</td>
+            <td>{{ i.Curs_BANK }}</td>
+            <td>{{ i.Kurs_sell }}</td>
+            <td>{{ i.Kurs_buy }}</td>
+            <td>{{ i.number_of_currency }}</td>
+            <td>{{ i.Date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<br><br><br><br>
+
+{% endblock %}

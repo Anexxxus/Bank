@@ -1,0 +1,41 @@
+{% extends 'main/lays.html' %}
+
+{% block content %}
+   <div class="container_table">
+         <form method="post" action="{% url 'Table' %}">
+         {% csrf_token %}  <!-- Токен безопасности для защиты от CSRF-атак -->
+         
+         <!-- Поле ввода суммы валюты -->
+		 <div class="select-text">
+            <input name="amount" type="number" REQUIRED>
+            <span>валюта</span>
+         </div>
+         <br>
+
+         <!-- Выпадающий список выбора валюты -->
+		 <div class="select-wrapper">
+            <select name="currency_to" class="select">
+               {% for c in currency_data %}
+               <option value="{{c.CharCode}}">{{c.Name}}</option>  <!-- Валюта из currency_data -->
+               {% endfor %}
+            </select>
+         </div>
+         <br>
+         <br>
+
+         <!-- Выбор операции -->
+         <p class="text_vibor"><b>выберите операцию</b></p>
+         <ul class="inlineList">
+             <li><input type="radio" name="oplata" value="sale">продажа</li>
+             <li><input type="radio" name="oplata" value="puy">покупка</li>
+          </ul>
+
+         <!-- Отправки формы -->
+         <div class="select-submit_table">
+            <input type="submit" class="Convert1">
+         </div>
+
+         <!-- Результат конвертации -->
+         <h2 class="h2Result">{{ result }} {{ currency_to }}</h2>
+   </div>
+{% endblock %}
